@@ -14,7 +14,7 @@ class NoticiasScreen extends StatelessWidget{
             style: TextStyle(
               fontFamily: 'Roboto',
               fontWeight: FontWeight.bold,
-              color: Colors.white
+              color: Colors.black
               )
             )
         ),
