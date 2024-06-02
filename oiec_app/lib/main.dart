@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/noticiasScreen.dart';
+import 'package:oiec_app/screens/homeScreen.dart';
 void main(){
   runApp(const MyApp());
 }
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.blue
       ),
       debugShowCheckedModeBanner: false,
-      home: const NoticiasScreen()
+      home: const HomeScreen()
     );
   }
 }
