@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
+import 'package:oiec_app/components/customContainer.dart';
 
 class PagosScreen extends StatelessWidget {
   const PagosScreen({super.key});
@@ -8,53 +9,52 @@ class PagosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Pagos',
-          style: TextStyle( 
-            color: Colors.white,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.bold ,
-            )
-        ),
+        title: const Text('Pagos',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+            )),
         backgroundColor: HexColor('#141927'),
       ),
-      body: Column(
+      body: const Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            height: 60.0,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                Text("Inscripción ONI 2023"),
-                Text("10/Oct/2023")
-                ],
-              ),
-              Icon(
-                Icons.picture_as_pdf,
-              ),
-            ],) 
+          CustomContainer(
+              child: _PagosContent(
+                  evento: 'Inscripcion ONI 2023', fecha: '20/02/2023'
+              )
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            color: Colors.white,
-            height: 60.0,
-            child: const Center(
-              child: Text(
-                "Inscripción ONI 2024"
-                ),
-            ),
-          ),
+          CustomContainer(
+              child: _PagosContent(
+                  evento: 'Inscripcion ONI 2024', fecha: '20/02/2024',
+              )
+          )
         ],
       ),
       backgroundColor: HexColor('#141927'),
+    );
+  }
+}
+
+class _PagosContent extends StatelessWidget {
+  final String evento;
+  final String fecha;
+
+  const _PagosContent({required this.evento, required this.fecha});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [Text(evento), Text(fecha)],
+        ),
+        const Icon(
+          Icons.picture_as_pdf,
+        ),
+      ],
     );
   }
 }

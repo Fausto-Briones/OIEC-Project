@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
+import 'package:oiec_app/components/customContainer.dart';
 
 class EntrenamientoScreen extends StatelessWidget {
   const EntrenamientoScreen({super.key});
@@ -8,23 +9,24 @@ class EntrenamientoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Entrenamiento',
-          style: TextStyle( 
-            color: Colors.white,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.bold ,
-            )
-        ),
+        title: const Text('Entrenamiento',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+            )),
         centerTitle: true,
         backgroundColor: HexColor('#141927'),
       ),
       drawer: const Drawer(backgroundColor: Colors.white),
       body: const Column(
-        children:[
-          CustomContainer(nombreActividad: 'Sesión 1',tema: 'Punteros en C',),
-          CustomContainer(nombreActividad: 'Sesión 2',tema: 'Bluces',),
-          CustomContainer(nombreActividad: 'Sesión 3',tema: 'Condicionales',),
+        children: [
+          CustomContainer(
+              child: _EntrenamientoContent(
+                  nombreActividad: 'Sesion 1', tema: 'Punteros en C')),
+          CustomContainer(
+              child: _EntrenamientoContent(
+                  nombreActividad: 'Sesion 2', tema: 'Bucles'))
         ],
       ),
       backgroundColor: HexColor('#141927'),
@@ -32,35 +34,20 @@ class EntrenamientoScreen extends StatelessWidget {
   }
 }
 
-class CustomContainer extends StatelessWidget {
-
+class _EntrenamientoContent extends StatelessWidget {
   final String nombreActividad;
   final String tema;
-
-  const CustomContainer({
-    super.key,
-    required this.nombreActividad,
-    required this.tema,
-  });
+  const _EntrenamientoContent(
+      {required this.nombreActividad, required this.tema});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      height: 60.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-          Text(nombreActividad) ,
-          Text(tema)
-          ],
+          children: [Text(nombreActividad), Text(tema)],
         ),
         const Icon(
           Icons.play_circle,
@@ -68,7 +55,7 @@ class CustomContainer extends StatelessWidget {
         const Icon(
           Icons.picture_as_pdf,
         ),
-      ],) 
+      ],
     );
   }
 }
