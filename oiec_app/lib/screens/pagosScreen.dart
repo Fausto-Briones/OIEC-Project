@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oiec_app/utilities/colorsController.dart';
+import 'package:oiec_app/components/MainLayout.dart';
 import 'package:oiec_app/components/customContainer.dart';
 
 class PagosScreen extends StatelessWidget {
@@ -7,17 +7,8 @@ class PagosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pagos',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold,
-            )),
-        backgroundColor: HexColor('#141927'),
-      ),
-      body: const Column(
+    return const MainLayout(title: "Pagos", 
+      body:  Column(
         children: [
           CustomContainer(
               child: _PagosContent(
@@ -31,7 +22,6 @@ class PagosScreen extends StatelessWidget {
           )
         ],
       ),
-      backgroundColor: HexColor('#141927'),
     );
   }
 }
