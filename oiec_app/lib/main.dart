@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/noticiasScreen.dart';
+import 'package:oiec_app/screens/competenciasScreen.dart';
 import 'package:oiec_app/screens/homeScreen.dart';
 import 'package:oiec_app/screens/pagosScreen.dart';
 void main(){
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.blue
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen()
+      home: const CompetenciasScreen()
     );
   }
 }
