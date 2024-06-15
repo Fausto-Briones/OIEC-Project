@@ -26,7 +26,7 @@ class MainLayout extends StatelessWidget{
               color: Colors.white, // Set the AppBar icon color to white
             ),
         ),
-        drawer: const DrawerComponent(),
+        drawer: DrawerComponent(),
         backgroundColor: HexColor('#141927'),
         
         body: body,

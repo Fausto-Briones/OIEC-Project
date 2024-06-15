@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class DrawerOption extends StatelessWidget{
   final String name;
   final Icon icon;
-  const DrawerOption({super.key, required this.name, required this.icon});
+  final void Function() onPressed;
+  const DrawerOption({super.key, required this.name, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context){
@@ -12,9 +13,8 @@ class DrawerOption extends StatelessWidget{
               leading: icon,
               title: Text(name, style: const TextStyle(fontFamily: 'Roboto')),
               onTap: () {
-                //Pasar como parametro a esta clase la funcion de enrutamiento
-                //TO DO: crear Router (se requieren mas pantallas creadas)
-                Navigator.pop(context);
+                onPressed();
+                //Navigator.pop(context);
               })
     );
   }

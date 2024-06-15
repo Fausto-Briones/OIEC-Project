@@ -18,7 +18,7 @@ class NoticiasScreen extends StatelessWidget{
               )
             )
         ),
-        drawer: const DrawerComponent()
+        drawer: DrawerComponent()
         ,backgroundColor: HexColor('#141927'),)
     );
   }
