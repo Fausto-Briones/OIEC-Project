@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:oiec_app/screens/chatScreen.dart';
 import 'package:oiec_app/screens/competenciasScreen.dart';
 import 'package:oiec_app/screens/homeScreen.dart';
 import 'package:oiec_app/screens/entrenamientoScreen.dart';
 import 'package:oiec_app/screens/pagosScreen.dart';
 import 'package:oiec_app/screens/noticiasScreen.dart';
-
+import 'package:oiec_app/screens/chatDetailScreen.dart';
 
 class Enrouter{
   Enrouter._privateConstructor();
@@ -40,4 +41,15 @@ class Enrouter{
     );
   }
 
+  void navigateToChatScreen(BuildContext context){
+    Navigator.push(
+      context, MaterialPageRoute(builder: (context)=> ChatScreen())
+    );
+  }
+
+  void navigateToChatDetailScreen(BuildContext context){
+    Navigator.push(
+      context, MaterialPageRoute(builder: (context)=> ChatDetailScreen())
+    );
+  }
 }

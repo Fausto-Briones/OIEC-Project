@@ -55,7 +55,7 @@ class DrawerComponent extends StatelessWidget{
               router.navigateToNewScreen(context);
               }),
             DrawerOption(name:"Chat",icon:const Icon(Icons.chat),onPressed: (){
-              router.navigateToHomeScreen(context);
+              router.navigateToChatScreen(context);
               }),
             
           ],
