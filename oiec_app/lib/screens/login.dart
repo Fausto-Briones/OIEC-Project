@@ -15,7 +15,7 @@ class Login extends StatelessWidget {
       backgroundColor: HexColor('#141927'),
       body: Column(
           children: [
-              Image.asset('../assets/logochevere.png'),
+              Image.asset('assets/images/logochevere.png'),
               InputFieldWithLabel(
                 labelText: 'Correo',
                 controller: TextEditingController(),
