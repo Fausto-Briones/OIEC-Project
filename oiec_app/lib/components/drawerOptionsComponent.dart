@@ -1,3 +1,7 @@
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class DrawerOption extends StatelessWidget{
@@ -14,7 +18,7 @@ class DrawerOption extends StatelessWidget{
               title: Text(name, style: const TextStyle(fontFamily: 'Roboto')),
               onTap: () {
                 onPressed();
-                //Navigator.pop(context);
+                Navigator.pop(context);
               })
     );
   }
