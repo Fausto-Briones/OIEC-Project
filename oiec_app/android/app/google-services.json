@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "133802372892",
+    "project_id": "oiec-9a17a",
+    "storage_bucket": "oiec-9a17a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133802372892:android:38ef28354f40e53cfd94d9",
+        "android_client_info": {
+          "package_name": "com.example.oiec_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYTCgZpIUz5sCpymTTDDh5HI9n1UnI6lM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

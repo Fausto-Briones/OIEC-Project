@@ -6,6 +6,7 @@ import 'package:oiec_app/screens/entrenamientoScreen.dart';
 import 'package:oiec_app/screens/pagosScreen.dart';
 import 'package:oiec_app/screens/noticiasScreen.dart';
 import 'package:oiec_app/screens/chatDetailScreen.dart';
+import 'package:oiec_app/screens/register.dart';
 
 class Enrouter{
   Enrouter._privateConstructor();
@@ -50,6 +51,12 @@ class Enrouter{
   void navigateToChatDetailScreen(BuildContext context){
     Navigator.push(
       context, MaterialPageRoute(builder: (context)=> ChatDetailScreen())
+    );
+  }
+
+  void navigateToRegisterScreen(BuildContext context){
+    Navigator.push(
+      context, MaterialPageRoute(builder: (context)=> const Register())
     );
   }
 }

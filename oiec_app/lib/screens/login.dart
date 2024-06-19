@@ -50,7 +50,7 @@ class Login extends StatelessWidget {
               onPressed: () {
                 // Acción a realizar cuando se presiona el botón
                 //Por ahora, solo navega. Se debe autenticar.
-                router.navigateToHomeScreen(context);
+                router.navigateToRegisterScreen(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:
