@@ -18,7 +18,6 @@ class DrawerOption extends StatelessWidget{
               title: Text(name, style: const TextStyle(fontFamily: 'Roboto')),
               onTap: () {
                 onPressed();
-                Navigator.pop(context);
               })
     );
   }
