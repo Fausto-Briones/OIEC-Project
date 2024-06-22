@@ -1,4 +1,4 @@
-package com.example.oiec_app
+package com.oiec.oiecapp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiec_app/services/auth.dart';
 import 'package:oiec_app/services/navigator.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
 import 'package:oiec_app/components/inputTextComponent.dart';
@@ -7,6 +8,10 @@ class Login extends StatelessWidget {
   Login({super.key});
 
   final Enrouter router = Enrouter.instance;
+  final AuthService _auth = AuthService();
+
+  TextEditingController _controllerCorreo = TextEditingController();
+  TextEditingController _controllerContrasenia = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +25,27 @@ class Login extends StatelessWidget {
             const SizedBox(height: 20),
             InputFieldWithLabel(
               labelText: 'Correo',
-              controller: TextEditingController(),
+              controller: _controllerCorreo,
               hintText: 'Ingresa tu correo',
               hintColor: Colors.grey,
             ),
             const SizedBox(height: 18), // Espacio entre los campos de entrada
             InputFieldWithLabel(
               labelText: 'Contraseña',
-              controller: TextEditingController(),
+              controller: _controllerContrasenia,
               hintText: 'Ingresa tu contraseña',
               hintColor: Colors.grey,
             ),
             const SizedBox(height: 60),
             ElevatedButton(
-              onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                //Por ahora, solo navega. Se debe autenticar.
-                router.navigateToHomeScreen(context);
+              onPressed: () async {
+                var result = await _auth.signIn(
+                    _controllerCorreo.text, _controllerContrasenia.text);
+                if (result == 1 || result == 2) {
+                  //Usuario o contraseña no valido
+                } else if (result != null) {
+                  router.navigateToHomeScreen(context);
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:
@@ -48,8 +57,6 @@ class Login extends StatelessWidget {
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                //Por ahora, solo navega. Se debe autenticar.
                 router.navigateToRegisterScreen(context);
               },
               style: ElevatedButton.styleFrom(

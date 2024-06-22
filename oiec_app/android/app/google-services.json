@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "133802372892",
-    "project_id": "oiec-9a17a",
-    "storage_bucket": "oiec-9a17a.appspot.com"
+    "project_number": "645734619239",
+    "project_id": "oiecdb",
+    "storage_bucket": "oiecdb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:133802372892:android:38ef28354f40e53cfd94d9",
+        "mobilesdk_app_id": "1:645734619239:android:3d57fe4d00e02d8df3dcc2",
         "android_client_info": {
-          "package_name": "com.example.oiec_app"
+          "package_name": "com.oiec.oiecapp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAYTCgZpIUz5sCpymTTDDh5HI9n1UnI6lM"
+          "current_key": "AIzaSyAMaaxndZwA4Nd9Z7KcsMGaZ7mFm-uF0bY"
         }
       ],
       "services": {

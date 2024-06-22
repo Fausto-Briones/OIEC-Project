@@ -56,7 +56,7 @@ class Enrouter{
 
   void navigateToRegisterScreen(BuildContext context){
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=> const Register())
+      context, MaterialPageRoute(builder: (context)=>  Register())
     );
   }
 }
