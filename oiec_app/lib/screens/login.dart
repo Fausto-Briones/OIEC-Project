@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiec_app/components/alertComponent.dart';
 import 'package:oiec_app/services/auth.dart';
 import 'package:oiec_app/services/navigator.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
@@ -41,9 +42,9 @@ class Login extends StatelessWidget {
               onPressed: () async {
                 var result = await _auth.signIn(
                     _controllerCorreo.text, _controllerContrasenia.text);
-                if (result == 1 || result == 2) {
-                  //Usuario o contraseña no valido
-                } else if (result != null) {
+                if (result == null) {
+                  showCustomAlertDialog(context, "Error", "El correo o contraseña no es válido.");
+                } else {
                   router.navigateToHomeScreen(context);
                 }
               },
