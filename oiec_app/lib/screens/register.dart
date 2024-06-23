@@ -1,11 +1,14 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:oiec_app/components/alertComponent.dart';
 import 'package:oiec_app/components/coursePickerComponent.dart';
 import 'package:oiec_app/components/datePickerComponent.dart';
 import 'package:oiec_app/services/auth.dart';
 import 'package:oiec_app/services/navigator.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
 import 'package:oiec_app/components/inputTextComponent.dart';
+import 'package:oiec_app/components/passwordTextComponent.dart';
 
 class Register extends StatelessWidget {
   Register({super.key});
@@ -85,7 +88,7 @@ class Register extends StatelessWidget {
                     hintColor: Colors.grey,
                   ),
                   SizedBox(height: 16), // Espacio entre los campos de entrada
-                  InputFieldWithLabel(
+                  PasswordInputField(
                     labelText: 'Contraseña',
                     controller: _controllerContrasenia,
                     hintText: 'Ingresa tu contraseña',
@@ -101,10 +104,11 @@ class Register extends StatelessWidget {
               onPressed: () async {
                 var result = await _auth.createAccount(
                     _controllerCorreo.text, _controllerContrasenia.text);
-                if (result == 1) {
-                  //Contraseña debil
-                } else if (result == 2) {
-                  //Correo usado
+                
+                if(!EmailValidator.validate(_controllerCorreo.text)){ 
+                  showCustomAlertDialog(context, "Error", "Correo no válido");
+                }else if (_controllerContrasenia.text.isEmpty || _controllerCorreo.text.isEmpty){
+                  showCustomAlertDialog(context, "Error", "El correo o contraseña no es válido.");
                 } else if (result != null) {
                   router.navigateToHomeScreen(context);
                 }

@@ -4,6 +4,7 @@ import 'package:oiec_app/services/auth.dart';
 import 'package:oiec_app/services/navigator.dart';
 import 'package:oiec_app/utilities/colorsController.dart';
 import 'package:oiec_app/components/inputTextComponent.dart';
+import 'package:oiec_app/components/passwordTextComponent.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -31,7 +32,7 @@ class Login extends StatelessWidget {
               hintColor: Colors.grey,
             ),
             const SizedBox(height: 18), // Espacio entre los campos de entrada
-            InputFieldWithLabel(
+            PasswordInputField(
               labelText: 'Contraseña',
               controller: _controllerContrasenia,
               hintText: 'Ingresa tu contraseña',
