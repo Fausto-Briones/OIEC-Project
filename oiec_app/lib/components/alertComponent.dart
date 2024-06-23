@@ -4,7 +4,7 @@ class AlertComponent extends StatelessWidget {
   final String title;
   final String content;
 
-  AlertComponent({required this.title, required this.content});
+  const AlertComponent({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class AlertComponent extends StatelessWidget {
       content: Text(content),
       actions: <Widget>[
         TextButton(
-          child: Text('OK'),
+          child: const Text('OK'),
           onPressed: () {
             Navigator.of(context).pop();
           },

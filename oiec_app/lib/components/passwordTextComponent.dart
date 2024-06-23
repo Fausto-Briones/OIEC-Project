@@ -7,7 +7,7 @@ class PasswordInputField extends StatefulWidget {
   final Color hintColor;
   final Color textColor;
 
-  PasswordInputField({
+  const PasswordInputField({super.key, 
     required this.labelText,
     required this.controller,
     this.hintText = '',
@@ -16,6 +16,7 @@ class PasswordInputField extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _PasswordInputFieldState createState() => _PasswordInputFieldState();
 }
 
@@ -35,19 +36,19 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
       children: [
         Text(
           widget.labelText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
           style: TextStyle(color: widget.textColor),
           controller: widget.controller,
           obscureText: _obscureText,
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             hintText: widget.hintText,
             hintStyle: TextStyle(color: widget.hintColor),
             suffixIcon: IconButton(

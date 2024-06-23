@@ -6,7 +6,7 @@ class CompetenciaComponent extends StatelessWidget {
   final String fecha;
   final String modalidad;
 
-  const CompetenciaComponent({
+  const CompetenciaComponent({super.key, 
     required this.competencia,
     required this.lugar,
     required this.fecha,
@@ -27,19 +27,19 @@ class CompetenciaComponent extends StatelessWidget {
                 children: [
                   Text(
                     competencia,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text('Lugar: $lugar'),
                   Text('Fecha: $fecha'),
                   Text('Modalidad: $modalidad'),
                 ],
               ),
             ),
-            Icon(Icons.assignment),
+            const Icon(Icons.assignment),
           ],
         ),
       ),

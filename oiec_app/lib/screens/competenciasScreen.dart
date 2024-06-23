@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/components/MainLayout.dart';
-import 'package:oiec_app/components/compHomeComponent.dart';
 import 'package:oiec_app/components/competenciaComponent.dart';
 
 
@@ -31,7 +30,7 @@ class _CompetenciasContent extends StatelessWidget{
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        TabBar(tabs: [Tab(text: 'Futuras'),
+        const TabBar(tabs: [Tab(text: 'Futuras'),
             Tab(text: 'Pasadas')],
         ),
         Expanded(
@@ -59,7 +58,7 @@ class _Futuras extends StatelessWidget{
     return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ListView(
-                  children: [
+                  children: const [
                     CompetenciaComponent(
                       competencia: 'Competencia 0',
                       lugar: 'Quito',
@@ -77,7 +76,7 @@ class _Pasadas extends StatelessWidget{
 
   @override
     Widget build(BuildContext context) {
-      return Center(
+      return const Center(
         child: Text('No hay competencias pasadas.',style: TextStyle(color: Colors.white),)
       );
     }

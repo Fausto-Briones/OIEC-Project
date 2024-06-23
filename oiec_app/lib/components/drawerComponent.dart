@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oiec_app/services/navigator.dart';
 
 class DrawerComponent extends StatelessWidget{
-  final String mainLogo = '../assets/customIcons/oiecLogo.svg';
+  final String mainLogo = 'assets/customIcons/oiecLogo.svg';
   final String logoName = 'OIEC_logo';
   DrawerComponent({super.key});
 
@@ -21,7 +21,7 @@ class DrawerComponent extends StatelessWidget{
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
               child: Row(
@@ -30,7 +30,7 @@ class DrawerComponent extends StatelessWidget{
                     mainLogo
                     ,semanticsLabel: logoName
                     )
-                  ,Text(
+                  ,const Text(
                 'OIEC',
                 style: TextStyle(
                   color: Colors.white,
