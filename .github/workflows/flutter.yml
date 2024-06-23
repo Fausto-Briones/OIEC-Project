@@ -36,25 +36,3 @@ jobs:
       with:
         name: OIECApp-release
         path: oiec_app/build/app/outputs/flutter-apk/app-release.apk
-
-  build_ios:
-    runs-on: macos-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.22.2'
-
-    - name: Install dependencies
-      run: |
-        cd oiec_app
-        flutter pub get
-
-    - name: Build iOS
-      run: |
-        cd oiec_app
-        flutter build ios --release --no-codesign
