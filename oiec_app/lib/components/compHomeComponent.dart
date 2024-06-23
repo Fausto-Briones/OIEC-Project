@@ -24,13 +24,13 @@ class CompHomeComponent extends StatelessWidget{
         ),
         child: Column(
           children: [
-            Text("Competencia$nroCompetencia", style: TextStyle(color: Colors.black)),
+            Text("Competencia$nroCompetencia", style: const TextStyle(color: Colors.black)),
             const SizedBox(height: 10),
             Row(
               children: [
-                Text(premio, style: TextStyle(color: Colors.black),),
+                Text(premio, style: const TextStyle(color: Colors.black),),
                 const SizedBox(width: 10),
-                Text(puntaje, style: TextStyle(color: Colors.black))
+                Text(puntaje, style: const TextStyle(color: Colors.black))
               ],
             )
 

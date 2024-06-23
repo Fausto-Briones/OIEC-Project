@@ -7,7 +7,7 @@ class InputFieldWithLabel extends StatelessWidget {
   final Color hintColor;
   final Color textColor;
 
-  InputFieldWithLabel({
+  const InputFieldWithLabel({super.key, 
     required this.labelText,
     required this.controller,
     this.hintText = '',
@@ -22,18 +22,18 @@ class InputFieldWithLabel extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
           style: TextStyle(color: textColor),
           controller: controller,
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             hintText: hintText,
             hintStyle: TextStyle(color: hintColor),
           ),

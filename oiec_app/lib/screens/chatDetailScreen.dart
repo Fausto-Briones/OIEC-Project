@@ -6,6 +6,7 @@ class ChatDetailScreen extends StatefulWidget {
   const ChatDetailScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatDetailScreenState createState() => _ChatDetailScreenState();
 }
 
@@ -132,7 +133,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       child: Row(
         children: [
           IconButton(
-            icon: Icon(Icons.mic),
+            icon: const Icon(Icons.mic),
             onPressed: () {},
           ),
           Expanded(
@@ -147,15 +148,15 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
             onPressed: _sendMessage,
           ),
           IconButton(
-            icon: Icon(Icons.photo),
+            icon: const Icon(Icons.photo),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.camera_alt),
+            icon: const Icon(Icons.camera_alt),
             onPressed: () {},
           ),
         ],

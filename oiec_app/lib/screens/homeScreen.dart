@@ -62,8 +62,9 @@ class _PreviousContests extends StatelessWidget{
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Competencias pasadas", textAlign: TextAlign.left,style: TextStyle(color: Color(0xFF595085),fontSize: 24),),
-        Container(height: 120, child:  Row(
+        const Text("Competencias pasadas", textAlign: TextAlign.left,style: TextStyle(color: Color(0xFF595085),fontSize: 24),),
+        // ignore: sized_box_for_whitespace
+        Container(height: 120, child:  const Row(
           children:[
              Expanded(child: CompHomeComponent(nroCompetencia: "1", premio: "Bronce", puntaje: "17"))
             ]

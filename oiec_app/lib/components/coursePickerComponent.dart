@@ -8,7 +8,7 @@ class DropdownWithLabel extends StatefulWidget {
   final Color hintColor;
   final Color textColor;
 
-  DropdownWithLabel({
+  const DropdownWithLabel({super.key, 
     required this.labelText,
     required this.controller,
     required this.options,
@@ -18,11 +18,11 @@ class DropdownWithLabel extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _DropdownWithLabelState createState() => _DropdownWithLabelState();
 }
 
 class _DropdownWithLabelState extends State<DropdownWithLabel> {
-  String? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +31,19 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
       children: [
         Text(
           widget.labelText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
           style: TextStyle(color: widget.textColor),
           controller: widget.controller,
           readOnly: true,
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             hintText: widget.hintText,
             hintStyle: TextStyle(color: widget.hintColor),
             suffixIcon: Icon(
@@ -63,7 +63,6 @@ class _DropdownWithLabelState extends State<DropdownWithLabel> {
                       title: Text(option),
                       onTap: () {
                         setState(() {
-                          _selectedOption = option;
                           widget.controller.text = option;
                         });
                         Navigator.pop(context);

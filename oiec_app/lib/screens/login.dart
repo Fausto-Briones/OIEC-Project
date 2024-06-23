@@ -12,8 +12,8 @@ class Login extends StatelessWidget {
   final Enrouter router = Enrouter.instance;
   final AuthService _auth = AuthService();
 
-  TextEditingController _controllerCorreo = TextEditingController();
-  TextEditingController _controllerContrasenia = TextEditingController();
+  final TextEditingController _controllerCorreo = TextEditingController();
+  final TextEditingController _controllerContrasenia = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,10 @@ class Login extends StatelessWidget {
                 var result = await _auth.signIn(
                     _controllerCorreo.text, _controllerContrasenia.text);
                 if (result == null) {
+                  // ignore: use_build_context_synchronously
                   showCustomAlertDialog(context, "Error", "El correo o contraseña no es válido.");
                 } else {
+                  // ignore: use_build_context_synchronously
                   router.navigateToHomeScreen(context);
                 }
               },

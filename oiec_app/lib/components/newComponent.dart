@@ -7,9 +7,10 @@ class Noticias extends StatelessWidget{
   final String newTitle;
   final String newBrief;
 
-  Noticias({required this.newPicture, required this.newTitle, required this.newBrief});
+  const Noticias({super.key, required this.newPicture, required this.newTitle, required this.newBrief});
   
   @override
+  // ignore: avoid_renaming_method_parameters, avoid_types_as_parameter_names, non_constant_identifier_names
   Widget build(BuildContext){
     return InkWell(
         onTap:()=>{

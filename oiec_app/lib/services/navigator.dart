@@ -44,13 +44,13 @@ class Enrouter{
 
   void navigateToChatScreen(BuildContext context){
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=> ChatScreen())
+      context, MaterialPageRoute(builder: (context)=> const ChatScreen())
     );
   }
 
   void navigateToChatDetailScreen(BuildContext context){
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=> ChatDetailScreen())
+      context, MaterialPageRoute(builder: (context)=> const ChatDetailScreen())
     );
   }
 

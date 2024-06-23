@@ -7,7 +7,7 @@ class DatePickerWithLabel extends StatefulWidget {
   final Color hintColor;
   final Color textColor;
 
-  DatePickerWithLabel({
+  const DatePickerWithLabel({super.key, 
     required this.labelText,
     required this.controller,
     this.hintText = '',
@@ -16,6 +16,7 @@ class DatePickerWithLabel extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _DatePickerWithLabelState createState() => _DatePickerWithLabelState();
 }
 
@@ -27,19 +28,19 @@ class _DatePickerWithLabelState extends State<DatePickerWithLabel> {
       children: [
         Text(
           widget.labelText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
           style: TextStyle(color: widget.textColor),
           controller: widget.controller,
           readOnly: true,
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             hintText: widget.hintText,
             hintStyle: TextStyle(color: widget.hintColor),
             suffixIcon: Icon(
@@ -56,7 +57,7 @@ class _DatePickerWithLabelState extends State<DatePickerWithLabel> {
               builder: (context, child) {
                 return Theme(
                   data: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.light(
+                    colorScheme: const ColorScheme.light(
                       primary: Colors.blue, // <-- Change this for the color of the selected date
                       onPrimary: Colors.white, // <-- Change this for the text color on the selected date
                       onSurface: Colors.black, // <-- Change this for the default text color
