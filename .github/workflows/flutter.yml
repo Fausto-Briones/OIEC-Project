@@ -1,4 +1,4 @@
-name: Flutter CI
+name: OIEC App
 
 on:
   push:
@@ -31,24 +31,19 @@ jobs:
         cd oiec_app
         flutter build apk --release
 
-  build_ios:
-    runs-on: macos-latest
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
+    - name: Upload APK to Github Repository
+      uses: actions/upload-artifact@v2
       with:
-        flutter-version: '3.22.2'
+        name: OIECApp-release
+        path: oiec_app/build/app/outputs/flutter-apk/app-release.apk
 
-    - name: Install dependencies
+    - name: Deploy APK to Firebase App Distribution
       run: |
-        cd oiec_app
-        flutter pub get
+        firebase appdistribution:distribute oiec_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
-    - name: Build iOS
-      run: |
-        cd oiec_app
-        flutter build ios --release --no-codesign
+  
