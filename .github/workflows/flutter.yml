@@ -42,7 +42,7 @@ jobs:
 
     - name: Deploy APK to Firebase App Distribution
       run: |
-        firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID }}
+        firebase appdistribution:distribute oiec_app/build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
