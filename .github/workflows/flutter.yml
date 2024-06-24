@@ -30,9 +30,20 @@ jobs:
       run: |
         cd oiec_app
         flutter build apk --release
-    
-    - name: Upload APK to root directory
+
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+
+    - name: Upload APK to Github Repository
       uses: actions/upload-artifact@v2
       with:
         name: OIECApp-release
         path: oiec_app/build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Deploy APK to Firebase App Distribution
+      run: |
+        firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk --app ${{ secrets.FIREBASE_APP_ID }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+  
