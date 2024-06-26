@@ -138,9 +138,11 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           ),
           Expanded(
             child: TextField(
+              style: const TextStyle(color: Colors.white),
               controller: _controller,
               decoration: InputDecoration(
                 hintText: 'Escribe tu mensaje',
+                hintStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
