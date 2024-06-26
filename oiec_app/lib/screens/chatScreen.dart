@@ -36,17 +36,21 @@ class _ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0), child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+      Expanded(child: 
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [Text(asunto), Text(contexto)],
-      ),
+        children: [Text(asunto), Text(contexto, maxLines: 4,  
+              overflow: TextOverflow.ellipsis,)],
+      )),
+      Expanded(child:
       IconButton(
         icon: const Icon(Icons.arrow_right_alt),
         onPressed: (){
           router.navigateToChatDetailScreen(context);
         },
       )
-    ]);
+    )]));
   }
 }

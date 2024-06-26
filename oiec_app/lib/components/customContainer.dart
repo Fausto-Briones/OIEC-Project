@@ -12,7 +12,7 @@ class CustomContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      height: 60.0,
+      height: 80.0,
         child: child);
   }
 }
