@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiec_app/components/compPopUpComponent.dart';
 
 class CompetenciaComponent extends StatelessWidget {
   final String competencia;
@@ -15,7 +16,19 @@ class CompetenciaComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => CompetenciaDialog(
+            competencia: competencia,
+            lugar: lugar,
+            fecha: fecha,
+            modalidad: modalidad,
+          ),
+        );
+      },
+      child: Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
@@ -43,6 +56,6 @@ class CompetenciaComponent extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

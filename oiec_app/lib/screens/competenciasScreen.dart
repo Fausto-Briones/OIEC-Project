@@ -62,7 +62,7 @@ class _Futuras extends StatelessWidget{
                     CompetenciaComponent(
                       competencia: 'Competencia 0',
                       lugar: 'Quito',
-                      fecha: '8/Sep/2023',
+                      fecha: '8/Sep/2024',
                       modalidad: 'Presencial',
                     ),
                   ],
