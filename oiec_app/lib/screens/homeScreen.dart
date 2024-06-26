@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oiec_app/components/MainLayout.dart';
@@ -39,7 +41,45 @@ class _HomeContent extends StatelessWidget {
   }
 }
 
-class _News extends StatelessWidget{
+class _News extends StatefulWidget{
+
+    @override
+  _NewsState createState() => _NewsState();
+}
+
+class _NewsState extends State<_News> {
+  final ScrollController _scrollController = ScrollController();
+  late Timer _timer;
+  double _scrollPosition = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+      _autoScroll();
+    });
+  }
+
+  void _autoScroll() {
+    setState(() {
+      _scrollPosition += 2.0; 
+      if (_scrollPosition >= _scrollController.position.maxScrollExtent) {
+        _scrollPosition = 0.0;
+      }
+      _scrollController.animateTo(
+        _scrollPosition,
+        duration: Duration(milliseconds: 100),
+        curve: Curves.linear,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +91,21 @@ class _News extends StatelessWidget{
          SizedBox(
           height: 100, 
           child: ListView(
+            controller: _scrollController,
             scrollDirection: Axis.horizontal,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0), // Adjust horizontal padding
-                child: Newshomecomponent(
+                Newshomecomponent(
                   noticia:
-                      "Ya se encuentran disponibles los resultados de la última competencia",
+                      "Resultados de la última competencia disponibles",
                 ),
-              ),
-
+                Newshomecomponent(
+                  noticia:
+                      "Inscripciones abiertas",
+                ),
+                Newshomecomponent(
+                  noticia:
+                      "Fecha de premiación anunciada",
+                ),
             ],
           ),
         ),

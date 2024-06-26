@@ -10,15 +10,24 @@ class Newshomecomponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0), child: SizedBox( 
+      width: 200,
+      child: Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(noticia)
+             Text(
+              noticia, 
+              maxLines: 4,  
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center
+              )
           ],
         ),
       ),
-    );
+    )));
   }
 }
