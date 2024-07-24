@@ -65,6 +65,11 @@ jobs:
       run: |
         cd oiec_app
         flutter pub get
+    
+    - name: Install CocoaPods
+      run: |
+        cd oiec_app/ios
+        pod install
 
     - name: Build iOS app
       run: |
