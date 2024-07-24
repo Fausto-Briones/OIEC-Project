@@ -61,32 +61,36 @@ jobs:
       with:
         flutter-version: '3.22.2'
 
+    - name: Update CocoaPods
+      run: sudo gem install cocoapods
+
     - name: Install dependencies
       run: |
         cd oiec_app
         flutter pub get
 
-    - name: Modify IPHONEOS_DEPLOYMENT_TARGET in Podfile
+    - name: Clean CocoaPods
       run: |
         cd oiec_app/ios
-        sed -i '' 's/platform :ios, .*/platform :ios, '14.0'/g' Podfile
-
-    - name: Install CocoaPods
-      run: |
-        cd oiec_app/ios
+        pod deintegrate
         pod install
 
-    - name: List iOS directory contents (for debugging)
+    - name: List iOS Directory Contents
       run: |
         cd oiec_app/ios
         ls -la
+
+    - name: Clean Build
+      run: |
+        cd oiec_app
+        flutter clean
 
     - name: Build iOS app
       run: |
         cd oiec_app
         flutter build ios --release --no-codesign
 
-    - name: List build directory contents (for debugging)
+    - name: List Build Directory Contents
       run: |
         cd oiec_app
         ls -R build/ios/
@@ -101,7 +105,7 @@ jobs:
         cd oiec_app
         xcodebuild -exportArchive -archivePath $PWD/build/ios/Runner.xcarchive -exportPath $PWD/build/ios/ipa -exportOptionsPlist ios/ExportOptions.plist
 
-    - name: List build directory (for debugging)
+    - name: List IPA Directory Contents
       run: |
         cd oiec_app
         ls -R build/ios/
@@ -115,4 +119,3 @@ jobs:
         firebase appdistribution:distribute build/ios/ipa/OIECApp.ipa --app ${{ secrets.FIREBASE_APP_ID_IOS }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-  
