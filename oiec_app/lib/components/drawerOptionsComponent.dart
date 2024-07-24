@@ -13,12 +13,15 @@ class DrawerOption extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return(
-      ListTile(
-              leading: icon,
-              title: Text(name, style: const TextStyle(fontFamily: 'Roboto')),
-              onTap: () {
+      InkWell(
+      onTap: () {
                 onPressed();
-              })
+              },
+      child: ListTile(
+              leading: icon,
+              title: Text(name, style: const TextStyle(fontFamily: 'Roboto', color: Colors.white)),
+              )
+            )
     );
   }
 }

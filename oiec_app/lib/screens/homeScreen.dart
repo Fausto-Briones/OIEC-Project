@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oiec_app/components/MainLayout.dart';
-import 'package:oiec_app/components/compHomeComponent.dart';
-import 'package:oiec_app/components/customContainer.dart';
 import 'package:oiec_app/components/newsHomeComponent.dart';
 
 
@@ -87,7 +85,7 @@ class _NewsState extends State<_News> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Noticias",textAlign: TextAlign.left, style: TextStyle(color: Color(0xFF595085),fontSize: 24),),
+        Text("Noticias",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
          SizedBox(
           height: 100, 
           child: ListView(
@@ -124,7 +122,7 @@ class _PreviousContests extends StatelessWidget{
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Competencias pasadas", textAlign: TextAlign.left,style: TextStyle(color: Color(0xFF595085),fontSize: 24),),
+        const Text("Competencias pasadas", textAlign: TextAlign.left,style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
         Container(height: 120, child:  const Row(
           children:[
              Center(
@@ -147,7 +145,7 @@ class _Chats extends StatelessWidget{
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Chats",textAlign: TextAlign.left, style: TextStyle(color: Color(0xFF595085),fontSize: 24),),
+        Text("Chats",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
         Column(
 
         )
