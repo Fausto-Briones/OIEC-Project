@@ -61,39 +61,15 @@ jobs:
       with:
         flutter-version: '3.22.2'
 
-    - name: Update CocoaPods
-      run: sudo gem install cocoapods
-
     - name: Install dependencies
       run: |
         cd oiec_app
         flutter pub get
 
-    - name: Clean CocoaPods
-      run: |
-        cd oiec_app/ios
-        pod deintegrate
-        pod install
-
-    - name: List iOS Directory Contents
-      run: |
-        cd oiec_app/ios
-        ls -la
-
-    - name: Clean Build
-      run: |
-        cd oiec_app
-        flutter clean
-
     - name: Build iOS app
       run: |
         cd oiec_app
         flutter build ios --release --no-codesign
-
-    - name: List Build Directory Contents
-      run: |
-        cd oiec_app
-        ls -R build/ios/
 
     - name: Archive iOS app
       run: |
@@ -104,12 +80,6 @@ jobs:
       run: |
         cd oiec_app
         xcodebuild -exportArchive -archivePath $PWD/build/ios/Runner.xcarchive -exportPath $PWD/build/ios/ipa -exportOptionsPlist ios/ExportOptions.plist
-
-    - name: List IPA Directory Contents
-      run: |
-        cd oiec_app
-        ls -R build/ios/
-        ls -R build/ios/ipa/
 
     - name: Install Firebase CLI
       run: npm install -g firebase-tools
