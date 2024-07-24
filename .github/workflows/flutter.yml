@@ -65,16 +65,31 @@ jobs:
       run: |
         cd oiec_app
         flutter pub get
-    
+
+    - name: Modify IPHONEOS_DEPLOYMENT_TARGET in Podfile
+      run: |
+        cd oiec_app/ios
+        sed -i '' 's/platform :ios, .*/platform :ios, '14.0'/g' Podfile
+
     - name: Install CocoaPods
       run: |
         cd oiec_app/ios
         pod install
 
+    - name: List iOS directory contents (for debugging)
+      run: |
+        cd oiec_app/ios
+        ls -la
+
     - name: Build iOS app
       run: |
         cd oiec_app
         flutter build ios --release --no-codesign
+
+    - name: List build directory contents (for debugging)
+      run: |
+        cd oiec_app
+        ls -R build/ios/
 
     - name: Archive iOS app
       run: |
@@ -85,20 +100,19 @@ jobs:
       run: |
         cd oiec_app
         xcodebuild -exportArchive -archivePath $PWD/build/ios/Runner.xcarchive -exportPath $PWD/build/ios/ipa -exportOptionsPlist ios/ExportOptions.plist
-        
+
     - name: List build directory (for debugging)
       run: |
         cd oiec_app
-        ls -R oiec_app/build/ios/
-        ls -R oiec_app/build/ios/ipa/
+        ls -R build/ios/
+        ls -R build/ios/ipa/
 
     - name: Install Firebase CLI
       run: npm install -g firebase-tools
 
     - name: Upload IPA to Firebase App Distribution
       run: |
-        firebase appdistribution:distribute oiec_app/build/ios/ipa/OIECApp.ipa --app ${{ secrets.FIREBASE_APP_ID_IOS }}
+        firebase appdistribution:distribute build/ios/ipa/OIECApp.ipa --app ${{ secrets.FIREBASE_APP_ID_IOS }}
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
   
