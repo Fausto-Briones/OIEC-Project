@@ -70,6 +70,11 @@ jobs:
       run: |
         cd oiec_app
         flutter build ios --release --no-codesign
+
+    - name: Create IPA from APP
+      run: |
+        mkdir -p build/ios/ipa
+        xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/ipa/OIECApp.ipa
         
     - name: List build directory (for debugging)
       run: |
