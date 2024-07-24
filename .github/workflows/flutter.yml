@@ -78,14 +78,17 @@ jobs:
 
     - name: Archive iOS app
       run: |
+        cd oiec_app
         xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Release archive -archivePath $PWD/build/ios/Runner.xcarchive
 
     - name: Export IPA from archive
       run: |
+        cd oiec_app
         xcodebuild -exportArchive -archivePath $PWD/build/ios/Runner.xcarchive -exportPath $PWD/build/ios/ipa -exportOptionsPlist ios/ExportOptions.plist
         
     - name: List build directory (for debugging)
       run: |
+        cd oiec_app
         ls -R oiec_app/build/ios/
         ls -R oiec_app/build/ios/ipa/
 
