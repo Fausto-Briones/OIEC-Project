@@ -1,21 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:oiec_app/services/navigator.dart';
 import 'package:oiec_app/components/MainLayout.dart';
 import 'package:oiec_app/components/customContainer.dart';
+import 'package:oiec_app/components/generalButtonComponent.dart';
+import 'package:oiec_app/globals.dart';
 
 class EntrenamientoScreen extends StatelessWidget {
-  const EntrenamientoScreen({super.key});
+  EntrenamientoScreen({super.key});
+  final Enrouter router = Enrouter.instance;
 
   @override
   Widget build(BuildContext context) {
-    return const MainLayout(title: "Entrenamientos", 
+    return MainLayout(
+      title: "Entrenamientos",
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomContainer(
-              child: _EntrenamientoContent(
-                  nombreActividad: 'Sesion 1', tema: 'Punteros en C')),
-          CustomContainer(
-              child: _EntrenamientoContent(
-                  nombreActividad: 'Sesion 2', tema: 'Bucles'))
+          const Column(
+            children: [
+              CustomContainer(
+                child: _EntrenamientoContent(
+                  nombreActividad: 'Sesion 1',
+                  tema: 'Punteros en C',
+                ),
+              ),
+              CustomContainer(
+                child: _EntrenamientoContent(
+                  nombreActividad: 'Sesion 2',
+                  tema: 'Bucles',
+                ),
+              ),
+            ],
+          ),
+          if (isTrainer)...[
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.05),
+              child: GeneralButton(
+                text: 'Añadir recursos',
+                onPressed: () {
+                  router.navigateToNewFileScreen(context);
+                },
+              ),
+            )
+          ]
         ],
       ),
     );

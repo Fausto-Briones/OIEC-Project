@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oiec_app/components/drawerOptionsComponent.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oiec_app/services/navigator.dart';
+import 'package:oiec_app/globals.dart';
 
 class DrawerComponent extends StatelessWidget {
   final String mainLogo = 'assets/customIcons/oiecLogo.svg';
@@ -58,10 +59,17 @@ class DrawerComponent extends StatelessWidget {
               },
             ),
             DrawerOption(
-              name: 'Pagos',
-              icon: Icon(Icons.payments, color: Colors.white),
+              name: isTrainer ? 'Problemas' : 'Pagos',
+              icon: Icon(
+                isTrainer ? Icons.notes : Icons.payments,
+                color: Colors.white,
+              ),
               onPressed: () {
-                router.navigateToPagosScreen(context);
+                if(isTrainer){
+                  router.navigateToProblemasScreen(context);
+                }else{
+                  router.navigateToPagosScreen(context);
+                }
               },
             ),
             DrawerOption(

@@ -6,7 +6,9 @@ import 'package:oiec_app/screens/entrenamientoScreen.dart';
 import 'package:oiec_app/screens/pagosScreen.dart';
 import 'package:oiec_app/screens/noticiasScreen.dart';
 import 'package:oiec_app/screens/chatDetailScreen.dart';
+import 'package:oiec_app/screens/problemasScreen.dart';
 import 'package:oiec_app/screens/register.dart';
+import 'package:oiec_app/screens/trainmentFileScreen.dart';
 
 class Enrouter{
   Enrouter._privateConstructor();
@@ -26,7 +28,7 @@ class Enrouter{
 
   void navigateToEntrenamientosScreen(BuildContext context){
     Navigator.push(
-      context, MaterialPageRoute(builder: (context)=> const EntrenamientoScreen())
+      context, MaterialPageRoute(builder: (context)=> EntrenamientoScreen())
     );
   }
 
@@ -58,5 +60,13 @@ class Enrouter{
     Navigator.push(
       context, MaterialPageRoute(builder: (context)=>  Register())
     );
+  }
+
+  void navigateToNewFileScreen(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>  TrainmentFileScreen()));
+  }
+
+  void navigateToProblemasScreen(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>  ProblemasScreen()));
   }
 }
