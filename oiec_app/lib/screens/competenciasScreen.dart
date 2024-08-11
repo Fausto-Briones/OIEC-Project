@@ -4,6 +4,7 @@ import 'package:oiec_app/components/competenciaComponent.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:oiec_app/services/db_service.dart';
 
 DateTime today = DateTime.now();
 
@@ -15,42 +16,7 @@ class CompetenciasScreen extends StatefulWidget {
 }
 
 class _CompetenciasScreenState extends State<CompetenciasScreen> {
-  late Map<String, dynamic> pastContests;
-  late Map<String, dynamic> futureContests;
 
-  @override
-  void initState() {
-    super.initState();
-    pastContests = {};
-    futureContests = {};
-    fetchContests();
-  }
-
-  Future<void> fetchContests() async {
-    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/contests'));
-
-    if (response.statusCode == 200) {
-      Map<String, dynamic> contests = jsonDecode(response.body);
-      final Map<String, dynamic> tempPastContests = {};
-      final Map<String, dynamic> tempFutureContests = {};
-
-      contests.forEach((key, value) {
-        DateTime contestDate = DateTime.parse(value['date']);
-        if (contestDate.isBefore(today)) {
-          tempPastContests[key] = value;
-        } else {
-          tempFutureContests[key] = value;
-        }
-      });
-
-      setState(() {
-        pastContests = tempPastContests;
-        futureContests = tempFutureContests;
-      });
-    } else {
-      print('Failed to load data');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,23 +24,43 @@ class _CompetenciasScreenState extends State<CompetenciasScreen> {
       title: "Competencias",
       body: DefaultTabController(
         length: 2,
-        child: Column(
-          children: [
-            const TabBar(
-              tabs: [
-                Tab(text: 'Pasadas'),
-                Tab(text: 'Futuras'),
-              ],
-            ),
-            Expanded(
-              child: TabBarView(
+        child: FutureBuilder<Map<String, Map<String, dynamic>>>(
+          future: DatabaseService.fetchContests(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              // Show a loading indicator while the data is being fetched
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              // Handle errors
+              return const Center(child: Text('Failed to load contests.'));
+            } else if (snapshot.hasData) {
+              // Once data is loaded, display the tabs with contests
+              final pastContests = snapshot.data!['pastContests']!;
+              final futureContests = snapshot.data!['futureContests']!;
+
+              return Column(
                 children: [
-                  _Pasadas(pastContests),
-                  _Futuras(futureContests),
+                  const TabBar(
+                    tabs: [
+                      Tab(text: 'Pasadas'),
+                      Tab(text: 'Futuras'),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        _Pasadas(pastContests),
+                        _Futuras(futureContests),
+                      ],
+                    ),
+                  ),
                 ],
-              ),
-            ),
-          ],
+              );
+            } else {
+              // Handle the case where snapshot has no data
+              return const Center(child: Text('No hay competencias disponibles.'));
+            }
+          },
         ),
       ),
     );
