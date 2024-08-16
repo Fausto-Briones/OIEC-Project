@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class DatabaseService {
-  static final String baseUrl = 'https://dereck.pythonanywhere.com'; // Replace with your IP address
+  static final String baseUrl = 'https://dereck.pythonanywhere.com/api'; // Replace with your IP address
   static final DateTime today = DateTime.now();
   
   static Future<Map<String,Map<String, dynamic>>> fetchContests() async {
@@ -31,4 +31,21 @@ class DatabaseService {
       throw Exception('Failed to load contests');
     }
   }
+
+  static Future<Map<String,Map<String,dynamic>>> fetchNews() async {
+    final response = await http.get(Uri.parse('$baseUrl/announcements'));
+
+    if (response.statusCode == 200){
+      Map<String,dynamic> news = jsonDecode(response.body);
+      
+      return {
+        'news':news
+      };
+
+    } else {
+      throw Exception('Failed to load news');
+    }
+
+  }
+
 }

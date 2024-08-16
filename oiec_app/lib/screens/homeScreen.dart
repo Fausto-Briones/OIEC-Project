@@ -31,7 +31,7 @@ class _HomeContent extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           _News(),
-          _PreviousContests(),
+          _PreviousResults(),
           _Chats(),
         ],
       ),
@@ -82,7 +82,7 @@ class _NewsState extends State<_News> {
 }
 
 
-class _PreviousContests extends StatelessWidget{
+class _PreviousResults extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {

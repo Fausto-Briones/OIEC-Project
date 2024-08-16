@@ -34,7 +34,7 @@ class Noticias extends StatelessWidget{
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 image: DecorationImage(
-                  image: FileImage(File(newPicture)),
+                  image: NetworkImage(newPicture),
                   fit: BoxFit.cover,
                 )
               
@@ -50,6 +50,7 @@ class Noticias extends StatelessWidget{
                       style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       )
                       )
                   ,const SizedBox(height: 5.0),
@@ -66,6 +67,7 @@ class Noticias extends StatelessWidget{
                       style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       )
                   )
                     
