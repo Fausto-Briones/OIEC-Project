@@ -50,7 +50,7 @@ class _PagosScreenState extends State<PagosScreen> {
 }
 
 class DatabaseService {
-  static final String baseUrl = 'http://192.168.3.167:8000/api'; // Replace with your IP address
+  static final String baseUrl = 'http://172.20.130.122:8000/api'; // Replace with your IP address
   
   static Future<Map<String,Map<String, dynamic>>> fetchPayments() async {
     final response = await http.get(Uri.parse('$baseUrl/payments'));

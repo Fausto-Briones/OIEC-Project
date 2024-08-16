@@ -15,12 +15,15 @@ class Register extends StatelessWidget {
   final AuthService _auth = AuthService();
   final Enrouter router = Enrouter.instance;
 
-  final TextEditingController _controllerNombre = TextEditingController();
-  final TextEditingController _controllerApellido = TextEditingController();
+  final TextEditingController _controllerNombreCompleto = TextEditingController();
+  final TextEditingController _controllerCedula = TextEditingController();
   final TextEditingController _controllerFecha = TextEditingController();
   final TextEditingController _controllerCurso = TextEditingController();
   final TextEditingController _controllerCorreo = TextEditingController();
   final TextEditingController _controllerContrasenia = TextEditingController();
+
+  final RegExp _nombreCompletoExp = RegExp(r'^[a-zA-Z\s]+$');
+  final RegExp _cedulaExp = RegExp(r'^\d{10}$');
 
   @override
   Widget build(BuildContext context) {
@@ -50,21 +53,21 @@ class Register extends StatelessWidget {
               child: Column(
                 children: [
                   InputFieldWithLabel(
-                    labelText: 'Nombres',
-                    controller: _controllerNombre,
-                    hintText: 'Ingresa tus nombres',
+                    labelText: 'Nombres *',
+                    controller: _controllerNombreCompleto,
+                    hintText: 'Ingresa tus nombres y apellidos',
                     hintColor: Colors.grey,
                   ),
                   const SizedBox(height: 16), // Espacio entre los campos de entrada
                   InputFieldWithLabel(
-                    labelText: 'Apellidos',
-                    controller: _controllerApellido,
-                    hintText: 'Ingresa tus apellidos',
+                    labelText: 'Cédula *',
+                    controller: _controllerCedula,
+                    hintText: 'Ingresa tu número de cédula',
                     hintColor: Colors.grey,
                   ),
                   const SizedBox(height: 16), // Espacio entre los campos de entrada
                   DatePickerWithLabel(
-                    labelText: 'Fecha de Nacimiento',
+                    labelText: 'Fecha de Nacimiento *',
                     controller: _controllerFecha,
                     hintText: 'Seleccione su fecha de nacimiento',
                     hintColor: Colors.grey,
@@ -72,7 +75,7 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 16), // Espacio entre los campos de entrada
                   DropdownWithLabel(
-                    labelText: 'Seleccionar opción',
+                    labelText: 'Curso actual *',
                     controller: _controllerCurso,
                     options: const ["Primero bachillerato", "Segundo bachillerato", "Tercero bachillerato"],
                     hintText: 'Seleccione una opción',
@@ -81,14 +84,14 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 16), // Espacio entre los campos de entrada
                   InputFieldWithLabel(
-                    labelText: 'Correo',
+                    labelText: 'Correo *',
                     controller: _controllerCorreo,
                     hintText: 'Ingresa tu correo',
                     hintColor: Colors.grey,
                   ),
                   const SizedBox(height: 16), // Espacio entre los campos de entrada
                   PasswordInputField(
-                    labelText: 'Contraseña',
+                    labelText: 'Contraseña *',
                     controller: _controllerContrasenia,
                     hintText: 'Ingresa tu contraseña',
                     hintColor: Colors.grey,
@@ -101,18 +104,31 @@ class Register extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 40),
             child: ElevatedButton(
               onPressed: () async {
-                var result = await _auth.createAccount(
-                    _controllerCorreo.text, _controllerContrasenia.text);
-                
-                if(!EmailValidator.validate(_controllerCorreo.text)){ 
+
+                var nombreCompleto = _controllerNombreCompleto.text;
+                var cedula = _controllerCedula.text;
+                var correo = _controllerCorreo.text;
+                var contrasena = _controllerContrasenia.text;
+                var curso = _controllerCurso.text;
+                var fechaN = _controllerFecha.text;
+
+                if(!_nombreCompletoExp.hasMatch(nombreCompleto)){
+                  showCustomAlertDialog(context, "Error", "El nombre debe contener sólo letras.");
+                }else if(!_cedulaExp.hasMatch(cedula)){
+                  showCustomAlertDialog(context, "Error", "La cédula debe tener sólo 10 dígitos.");
+                } else if(!EmailValidator.validate(_controllerCorreo.text)){ 
                   // ignore: use_build_context_synchronously
                   showCustomAlertDialog(context, "Error", "Correo no válido");
-                }else if (_controllerContrasenia.text.isEmpty || _controllerCorreo.text.isEmpty){
+                } else if(nombreCompleto.isEmpty || cedula.isEmpty || correo.isEmpty || contrasena.isEmpty || curso.isEmpty || fechaN.isEmpty){
                   // ignore: use_build_context_synchronously
-                  showCustomAlertDialog(context, "Error", "El correo o contraseña no es válido.");
-                } else if (result != null) {
+                  showCustomAlertDialog(context, "Error", "Todos los campos son obligatorios.");
+                }else{
+                  var result = await _auth.createAccount(correo, contrasena);
+                  if (result != null) {
                   // ignore: use_build_context_synchronously
+                  _auth.agregarUsuario(nombreCompleto, cedula, fechaN, curso, correo);
                   router.navigateToHomeScreen(context);
+                }
                 }
               },
               style: ElevatedButton.styleFrom(

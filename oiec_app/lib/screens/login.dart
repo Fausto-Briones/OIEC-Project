@@ -48,6 +48,7 @@ class Login extends StatelessWidget {
                   showCustomAlertDialog(context, "Error", "El correo o contraseña no es válido.");
                 } else {
                   // ignore: use_build_context_synchronously
+                  _auth.definirRol();
                   router.navigateToHomeScreen(context);
                 }
               },
