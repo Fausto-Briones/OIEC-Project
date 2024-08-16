@@ -49,6 +49,7 @@ class Login extends StatelessWidget {
                 } else {
                   // ignore: use_build_context_synchronously
                   _auth.definirRol();
+                  _auth.obtenerCedula();
                   router.navigateToHomeScreen(context);
                 }
               },

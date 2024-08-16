@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class DatabaseService {
-  static final String baseUrl = 'http://172.20.130.122:8000/api'; // Replace with your IP address
+  static final String baseUrl = 'https://dereck.pythonanywhere.com'; // Replace with your IP address
   static final DateTime today = DateTime.now();
   
   static Future<Map<String,Map<String, dynamic>>> fetchContests() async {
