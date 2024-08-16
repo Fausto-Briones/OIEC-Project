@@ -65,7 +65,7 @@ class _EntrenamientoscreenState extends State<EntrenamientoScreen> {
 }
 
 class DatabaseService {
-  static final String baseUrl = 'http://172.20.130.122:8000/api'; // Replace with your IP address
+  static final String baseUrl = 'https://dereck.pythonanywhere.com'; // Replace with your IP address
   
   static Future<Map<String,Map<String, dynamic>>> fetchTrainings() async {
     final response = await http.get(Uri.parse('$baseUrl/trainings'));

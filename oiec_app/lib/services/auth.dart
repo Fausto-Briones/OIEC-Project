@@ -69,4 +69,17 @@ class AuthService {
       }
     });
   }
+
+  void obtenerCedula() async {
+    var infoUser = _auth.currentUser;
+    var kk = FirebaseFirestore.instance
+    .collection('User')
+    .doc(infoUser!.uid)
+    .get()
+    .then((DocumentSnapshot documentSnapshot){
+      if(documentSnapshot.exists){
+        cedula = documentSnapshot.get('cedula');
+      }
+    });
+  }
 }
