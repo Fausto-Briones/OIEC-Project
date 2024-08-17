@@ -56,7 +56,7 @@ class _NewsState extends State<_News> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Noticias",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
+        Text("Noticias",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24,fontFamily: 'Roboto',fontWeight: FontWeight.bold),),
         const SizedBox(height: 10,),
          SizedBox(
           height: 100, 
@@ -117,10 +117,11 @@ class _PreviousResultsState extends State<_PreviousResults> {
         const Text(
           "Tus resultados pasados",
           textAlign: TextAlign.left,
-          style: TextStyle(color: Color.fromARGB(255, 190, 184, 222), fontSize: 24),
+          style: TextStyle(color: Color.fromARGB(255, 190, 184, 222), fontSize: 24,fontWeight: FontWeight.bold),
         ),
+        SizedBox(height: 10),
         SizedBox(
-          height: 150,
+          height: 120,
           child: futureResults == null 
               ? const Center(child: CircularProgressIndicator()) // Show loading indicator if future is null
               : FutureBuilder<Map<String, Map<String, dynamic>>>(
@@ -134,8 +135,15 @@ class _PreviousResultsState extends State<_PreviousResults> {
             return Center(child: Text('No hay resultados previos disponibles.'));
           } else {
             Map<String, dynamic> results = snapshot.data!['results']!;
-
-                return ListView(
+            print(results);
+              return results.isEmpty ?
+              const Center(
+            child: Text(
+              'No hay resultados previos disponibles.',
+              style: TextStyle(color: Colors.white),
+              ),
+            )
+            : ListView(
                   scrollDirection: Axis.horizontal,
                   children: results.entries.map((entry) {
                     // Accessing the key and value from the map entry

@@ -63,4 +63,18 @@ class DatabaseService {
     }
   }
 
+  static Future<Map<String,Map<String, dynamic>>> fetchPayments() async {
+    final response = await http.get(Uri.parse('$baseUrl/payments'));
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> pagos = jsonDecode(response.body);
+
+      return {
+        'payments': pagos,
+      };
+    } else {
+      throw Exception('Failed to load payments');
+    }
+  }
+
 }

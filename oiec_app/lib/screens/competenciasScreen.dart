@@ -32,7 +32,7 @@ class _CompetenciasScreenState extends State<CompetenciasScreen> {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               // Handle errors
-              return const Center(child: Text('Failed to load contests.'));
+              return const Center(child: Text('Failed to load contests.',style: TextStyle(color: Colors.white),));
             } else if (snapshot.hasData) {
               // Once data is loaded, display the tabs with contests
               final pastContests = snapshot.data!['pastContests']!;
