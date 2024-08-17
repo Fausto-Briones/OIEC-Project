@@ -43,25 +43,28 @@ class TrainmentFileScreen extends StatelessWidget {
               InputFieldWithLabel(
                 labelText: 'Título del taller',
                 controller: _controllerTaller,
-                hintText: '',
+                hintText: 'Ingresa título del taller o competencia',
                 hintColor: Colors.grey,
               ),
+              const SizedBox(height: 30),
               InputFieldWithLabel(
-                labelText: 'Título de la clase',
+                labelText: 'Tema de la clase',
                 controller: _controllerTitulo,
-                hintText: '',
+                hintText: 'Ingresa tema de la clase',
                 hintColor: Colors.grey,
               ),
+              const SizedBox(height: 30),
               InputFieldWithLabel(
                 labelText: 'Enlace de la clase',
                 controller: _controllerEnlaceVideo,
-                hintText: '',
+                hintText: 'Ingresa enlace de video de la clase',
                 hintColor: Colors.grey,
               ),
+              const SizedBox(height: 30),
               InputFieldWithLabel(
                 labelText: 'Enlace de archivos',
                 controller: _controllerEnlaceArchivos,
-                hintText: '',
+                hintText: 'Ingresa enlace de archivos utilizados',
                 hintColor: Colors.grey,
               ),
             ],
@@ -82,8 +85,9 @@ class TrainmentFileScreen extends StatelessWidget {
                       context, "Error", "Todos los campos son obligatorios.");
                 } else {
                   agregarClase(taller, clase, video, archivo);
-                  
-                  router.navigateToEntrenamientosScreen(context);
+                  Future.delayed(Duration(seconds: 1), () {
+                    router.navigateToEntrenamientosScreen(context);
+                  });
                 }
               },
             ),
