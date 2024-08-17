@@ -19,9 +19,10 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#141927'),
+      resizeToAvoidBottomInset: false,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 150.0, left: 15.0, right: 15.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 80.0, left: 15.0, right: 15.0),
           child: Column(children: [
             Image.asset('assets/images/logochevere.png'),
             const SizedBox(height: 20),
