@@ -13,7 +13,8 @@ class CompHomeComponent extends StatelessWidget{
     final screenWidth = MediaQuery.of(context).size.width;
     
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0), child:  InkWell(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0,), child:  
+      InkWell(
       onTap: () {
         // Define your onTap action here
         print("Tapped on $competencia");

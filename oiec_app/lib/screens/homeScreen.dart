@@ -30,11 +30,11 @@ class _HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       child: ListView(
         children: [
-          const SizedBox(height: 20),
           _News(),
+          const SizedBox(height: 20,),
           _PreviousResults(),
         ],
       ),
@@ -57,6 +57,7 @@ class _NewsState extends State<_News> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Noticias",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
+        const SizedBox(height: 10,),
          SizedBox(
           height: 100, 
           child: ListView(
@@ -100,7 +101,7 @@ class _PreviousResultsState extends State<_PreviousResults> {
   void initState() {
     super.initState();
     // Assuming you have a method to get the user's 'cedula'
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 3), () {
       String cedula = globals.cedula;
       setState(() {
         futureResults = DatabaseService.fetchPastResults(cedula);
