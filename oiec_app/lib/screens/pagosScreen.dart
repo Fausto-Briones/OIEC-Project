@@ -4,7 +4,7 @@ import 'package:oiec_app/components/customContainer.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import '../services/db_service.dart';
 
 class PagosScreen extends StatefulWidget {
   const PagosScreen({super.key});
@@ -47,24 +47,6 @@ class _PagosScreenState extends State<PagosScreen> {
     );
   }
 
-}
-
-class DatabaseService {
-  static final String baseUrl = 'http://172.20.130.122:8000/api'; // Replace with your IP address
-  
-  static Future<Map<String,Map<String, dynamic>>> fetchPayments() async {
-    final response = await http.get(Uri.parse('$baseUrl/payments'));
-
-    if (response.statusCode == 200) {
-      Map<String, dynamic> pagos = jsonDecode(response.body);
-
-      return {
-        'payments': pagos,
-      };
-    } else {
-      throw Exception('Failed to load payments');
-    }
-  }
 }
 
 class _Pagos extends StatelessWidget {

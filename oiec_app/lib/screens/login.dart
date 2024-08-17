@@ -71,7 +71,7 @@ class Login extends StatelessWidget {
                     HexColor('#262B32'), // Color de fondo del botón
                 foregroundColor: Colors.white, // Color del texto
               ),
-              child: const Text('Registrarse'),
+              child: const Text('Registrarse',),
             ),
           ]),
         ),

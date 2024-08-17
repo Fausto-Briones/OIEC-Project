@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:oiec_app/utilities/colorsController.dart';
 
 class CompHomeComponent extends StatelessWidget{
 
@@ -20,8 +20,8 @@ class CompHomeComponent extends StatelessWidget{
         print("Tapped on $competencia");
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10.0),
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
         width: screenWidth * 0.85, // Almost full width with some padding
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
@@ -34,25 +34,33 @@ class CompHomeComponent extends StatelessWidget{
               competencia,
               style: const TextStyle(
                 color: Color.fromARGB(255, 100, 100, 180),
-                fontSize: 16,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 20),
+            Row(  
+            children: [
             Text(
               "Puntaje obtenido:",
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 14,
+              style: TextStyle(
+                color: HexColor('#141927'),
+                fontSize: 20,
+                fontWeight: FontWeight.bold
               ),
             ),
-            const SizedBox(height: 5),
-            Text(
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0), // Bottom padding for spacing
+              child: Text(
               puntaje,
               style: const TextStyle(
-                color: Color.fromARGB(255, 150, 150, 150),
-                fontSize: 16,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 20,
               ),
+            ),
+            ),
+            
+            ]
             ),
           ],
         ),
