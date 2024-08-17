@@ -9,35 +9,54 @@ class CompHomeComponent extends StatelessWidget{
   const CompHomeComponent({super.key, required this.competencia, required this.puntaje});
   
   @override
-  Widget build(BuildContext context){
-    return InkWell(
-        onTap:()=>{
-
-        },
-        child: Container(
-          margin: const EdgeInsets.all(10.0),
-          padding: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.white
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0), child:  InkWell(
+      onTap: () {
+        // Define your onTap action here
+        print("Tapped on $competencia");
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        width: screenWidth * 0.85, // Almost full width with some padding
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: const Color(0xFFF0F0F0),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("$competencia", style: const TextStyle(color: Colors.black)),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Text("Puntaje obtenido:", style: const TextStyle(color: Colors.black),),
-                const SizedBox(width: 10),
-                Text(puntaje, style: const TextStyle(color: Colors.black))
-              ],
-            )
-
+            Text(
+              competencia,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 100, 100, 180),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              "Puntaje obtenido:",
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              puntaje,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 150, 150, 150),
+                fontSize: 16,
+              ),
+            ),
           ],
-        
         ),
-    )
-    );
+      ),
+    ));
   }
 
 }

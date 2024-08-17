@@ -94,15 +94,18 @@ class _PreviousResults extends StatefulWidget{
 
 
 class _PreviousResultsState extends State<_PreviousResults> {
-  late Future<Map<String,Map<String,dynamic>>> futureResults;
+  Future<Map<String,Map<String,dynamic>>>? futureResults;
 
   @override
   void initState() {
     super.initState();
     // Assuming you have a method to get the user's 'cedula'
-    String cedula = globals.cedula;
-    print(cedula);
-    futureResults = DatabaseService.fetchPastResults(cedula);
+    Future.delayed(Duration(seconds: 2), () {
+      String cedula = globals.cedula;
+      setState(() {
+        futureResults = DatabaseService.fetchPastResults(cedula);
+      });
+    });
   }
 
   @override
@@ -116,8 +119,10 @@ class _PreviousResultsState extends State<_PreviousResults> {
           style: TextStyle(color: Color.fromARGB(255, 190, 184, 222), fontSize: 24),
         ),
         SizedBox(
-          height: 120,
-          child: FutureBuilder<Map<String,Map<String,dynamic>>>(
+          height: 150,
+          child: futureResults == null 
+              ? const Center(child: CircularProgressIndicator()) // Show loading indicator if future is null
+              : FutureBuilder<Map<String, Map<String, dynamic>>>(
         future: futureResults,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
