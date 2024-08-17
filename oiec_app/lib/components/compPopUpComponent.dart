@@ -43,7 +43,7 @@ class CompetenciaDialog extends StatelessWidget {
             'Te invitamos a participar de $competencia, se encuentran abiertas las inscripciones hasta el $fecha. Con sede en la ciudad de $lugar aunque la modalidad del concurso será $modalidad.',
           ),
           const SizedBox(height: 16),
-          Text('Costo de inscripción: \$10'),
+          Text('Costo de inscripción: Gratis'),
         ],
       ),
       actions: [

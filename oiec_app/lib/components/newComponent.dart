@@ -20,6 +20,7 @@ class Noticias extends StatelessWidget{
           margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
           border: Border.all(
             color: Colors.black,
@@ -50,7 +51,7 @@ class Noticias extends StatelessWidget{
                       style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
-                        color: Colors.white
+                        color: Colors.black
                       )
                       )
                   ,const SizedBox(height: 5.0),
@@ -66,8 +67,8 @@ class Noticias extends StatelessWidget{
                       newBrief,
                       style: const TextStyle(
                         fontFamily: 'Roboto',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
+
+                        color: Colors.black
                       )
                   )
                     

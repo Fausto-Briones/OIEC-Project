@@ -48,4 +48,19 @@ class DatabaseService {
 
   }
 
+  static Future<Map<String,Map<String, dynamic>>> fetchPastResults(String cedula) async {
+    final response = await http.get(Uri.parse('$baseUrl/participants/$cedula/pastcontests/'));
+
+    if (response.statusCode == 200) {
+      Map<String,dynamic> pastResults = jsonDecode(response.body);
+      print(pastResults);
+      return {
+        'results':pastResults
+      };
+
+    } else {
+      throw Exception('Failed to load news');
+    }
+  }
+
 }

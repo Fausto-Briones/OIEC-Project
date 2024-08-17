@@ -1,9 +1,13 @@
 import 'dart:async';
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oiec_app/components/MainLayout.dart';
+import 'package:oiec_app/components/compHomeComponent.dart';
 import 'package:oiec_app/components/newsHomeComponent.dart';
+import 'package:oiec_app/globals.dart' as globals;
+import '../services/db_service.dart';
 
 
 class HomeScreen extends StatelessWidget{
@@ -32,7 +36,6 @@ class _HomeContent extends StatelessWidget {
           const SizedBox(height: 20),
           _News(),
           _PreviousResults(),
-          _Chats(),
         ],
       ),
     );
@@ -82,40 +85,67 @@ class _NewsState extends State<_News> {
 }
 
 
-class _PreviousResults extends StatelessWidget{
+class _PreviousResults extends StatefulWidget{
+  @override
+  _PreviousResultsState createState() => _PreviousResultsState();
+    
+  }
+  
+
+
+class _PreviousResultsState extends State<_PreviousResults> {
+  late Future<Map<String,Map<String,dynamic>>> futureResults;
+
+  @override
+  void initState() {
+    super.initState();
+    // Assuming you have a method to get the user's 'cedula'
+    String cedula = globals.cedula;
+    print(cedula);
+    futureResults = DatabaseService.fetchPastResults(cedula);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Competencias pasadas", textAlign: TextAlign.left,style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
-        Container(height: 120, child:  const Row(
-          children:[
-             Center(
-        child: Text('No hay competencias pasadas.',style: TextStyle(color: Colors.white),)
-      )
-            ]
-          
-        ))
-      ],
-    );
-  }
-}
+        const Text(
+          "Tus resultados pasados",
+          textAlign: TextAlign.left,
+          style: TextStyle(color: Color.fromARGB(255, 190, 184, 222), fontSize: 24),
+        ),
+        SizedBox(
+          height: 120,
+          child: FutureBuilder<Map<String,Map<String,dynamic>>>(
+        future: futureResults,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('No se pudieron cargar tus resultados'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No hay resultados previos disponibles.'));
+          } else {
+            Map<String, dynamic> results = snapshot.data!['results']!;
 
+                return ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: results.entries.map((entry) {
+                    // Accessing the key and value from the map entry
+                    String contestId = entry.key;
+                    Map<String, dynamic> resultData = entry.value;
 
-
-class _Chats extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Chats",textAlign: TextAlign.left, style: TextStyle(color: Color.fromARGB(255, 190, 184, 222),fontSize: 24),),
-        Column(
-
-        )
+                    return CompHomeComponent(
+                      competencia: contestId, // Using the id as the competencia name
+                      puntaje: resultData['score']?.toString() ?? 'N/A', // Accessing the score from the data
+                    );
+                  }).toList(),
+                );
+          }
+        },
+      ),
+        ),
       ],
     );
   }

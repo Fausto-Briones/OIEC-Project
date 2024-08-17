@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 
 class CompHomeComponent extends StatelessWidget{
 
-  final String nroCompetencia;
-  final String premio;
+  final String competencia;
   final String puntaje;
 
-  const CompHomeComponent({super.key, required this.nroCompetencia, required this.premio, required this.puntaje});
+  const CompHomeComponent({super.key, required this.competencia, required this.puntaje});
   
   @override
   Widget build(BuildContext context){
@@ -24,11 +23,11 @@ class CompHomeComponent extends StatelessWidget{
         ),
         child: Column(
           children: [
-            Text("Competencia$nroCompetencia", style: const TextStyle(color: Colors.black)),
+            Text("$competencia", style: const TextStyle(color: Colors.black)),
             const SizedBox(height: 10),
             Row(
               children: [
-                Text(premio, style: const TextStyle(color: Colors.black),),
+                Text("Puntaje obtenido:", style: const TextStyle(color: Colors.black),),
                 const SizedBox(width: 10),
                 Text(puntaje, style: const TextStyle(color: Colors.black))
               ],
