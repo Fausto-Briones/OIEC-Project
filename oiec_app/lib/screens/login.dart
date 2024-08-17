@@ -27,6 +27,7 @@ class Login extends StatelessWidget {
             Image.asset('assets/images/logochevere.png'),
             const SizedBox(height: 20),
             InputFieldWithLabel(
+              key:Key('correo'),
               labelText: 'Correo',
               controller: _controllerCorreo,
               hintText: 'Ingresa tu correo',
@@ -34,6 +35,7 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 18), // Espacio entre los campos de entrada
             PasswordInputField(
+              key: Key('contrasenia'),
               labelText: 'Contraseña',
               controller: _controllerContrasenia,
               hintText: 'Ingresa tu contraseña',
@@ -41,6 +43,7 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 60),
             ElevatedButton(
+              key:Key("loginButton"),
               onPressed: () async {
                 var result = await _auth.signIn(
                     _controllerCorreo.text, _controllerContrasenia.text);
