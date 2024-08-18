@@ -13,6 +13,15 @@ class MainLayout extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+          leading: Tooltip(
+          message: 'Open navigation menu',
+          child: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            }
+            )
+            ),
           title: Text(
             title, 
             style: const TextStyle(
