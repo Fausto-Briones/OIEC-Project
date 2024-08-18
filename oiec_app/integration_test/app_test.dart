@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:oiec_app/screens/login.dart';
 import 'package:oiec_app/main.dart' as app;
 
 void main(){
@@ -13,6 +14,10 @@ void main(){
     final Finder passwordField = find.byKey(Key('contrasenia'));
     final Finder loginButton = find.byKey(Key('loginButton'));
   
+    expect(correoField, findsOneWidget);
+    expect(passwordField, findsOneWidget);
+    expect(loginButton, findsOneWidget);
+
     await tester.enterText(correoField, 'admin@admin.com');
     await tester.enterText(passwordField, 'admin123');
 
