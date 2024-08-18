@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oiec_app/components/MainLayout.dart';
 import 'package:oiec_app/components/competenciaComponent.dart';
+import 'package:oiec_app/components/competenciaPastComponent.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -90,6 +91,7 @@ class _Futuras extends StatelessWidget {
                   lugar: futureContest['location'] ?? 'Unknown Location',
                   fecha: DateFormat.yMMMMd().format(DateTime.parse(futureContest['date'])),
                   modalidad: futureContest['mode'] ?? 'Unknown Mode',
+                  form: futureContest['form'] ?? 'https://oiec-inf.org/',
                 );
               }).toList(),
             ),
@@ -117,11 +119,12 @@ class _Pasadas extends StatelessWidget {
               itemCount: pastContests.length,
               itemBuilder: (context, index) {
                 final pastContest = pastContests.values.toList()[index];
-                return CompetenciaComponent(
+                return CompetenciaPastComponent(
                   competencia: pastContest['name'] ?? 'Unnamed Contest',
                   lugar: pastContest['location'] ?? 'Unknown Location',
                   fecha: DateFormat.yMMMMd().format(DateTime.parse(pastContest['date'])),
                   modalidad: pastContest['mode'] ?? 'Unknown Mode',
+
                 );
               },
             ),

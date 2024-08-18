@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:oiec_app/components/compPopUpComponent.dart';
+import 'package:oiec_app/components/compPastPopUp.dart';
 
-class CompetenciaComponent extends StatelessWidget {
+class CompetenciaPastComponent extends StatelessWidget {
   final String competencia;
   final String lugar;
   final String fecha;
   final String modalidad;
-  final String form;
 
-  const CompetenciaComponent({super.key, 
+
+  const CompetenciaPastComponent({super.key, 
     required this.competencia,
     required this.lugar,
     required this.fecha,
     required this.modalidad,
-    required this.form,
+
   }); 
 
   @override
@@ -22,12 +22,11 @@ class CompetenciaComponent extends StatelessWidget {
       onTap: () {
         showDialog(
           context: context,
-          builder: (BuildContext context) => CompetenciaDialog(
+          builder: (BuildContext context) => CompetenciaPastDialog(
             competencia: competencia,
             lugar: lugar,
             fecha: fecha,
             modalidad: modalidad,
-            form: form,
           ),
         );
       },

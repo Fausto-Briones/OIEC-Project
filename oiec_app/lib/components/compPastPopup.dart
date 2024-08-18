@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class CompetenciaDialog extends StatelessWidget {
+class CompetenciaPastDialog extends StatelessWidget {
   final String competencia;
   final String lugar;
   final String fecha;
   final String modalidad;
-  final String form;
 
-  const CompetenciaDialog({
+
+  const CompetenciaPastDialog({
     required this.competencia,
     required this.lugar,
     required this.fecha,
     required this.modalidad,
-    required this.form
   });
 
   @override
@@ -43,10 +41,10 @@ class CompetenciaDialog extends StatelessWidget {
           Text('Modalidad: $modalidad'),
           const SizedBox(height: 16),
           Text(
-            'Te invitamos a participar de $competencia, se encuentran abiertas las inscripciones hasta el $fecha. Con sede en la ciudad de $lugar aunque la modalidad del concurso será $modalidad.',
+            'La competencia $competencia, fue realizada el dia $fecha. Con sede en la ciudad de $lugar , la modalidad del concurso fue $modalidad.',
           ),
           const SizedBox(height: 16),
-          Text('Costo de inscripción: Gratis'),
+
         ],
       ),
       actions: [
@@ -56,21 +54,8 @@ class CompetenciaDialog extends StatelessWidget {
           },
           child: const Text('Cerrar'),
         ),
-        TextButton(
-          onPressed: ()  {
-            print('Form URL: $form');
-            _launchURL(form);
-          },
-          child: const Text('Inscribirme'),
-        ),
+        
       ],
     );
-  }
-}
-
-void _launchURL(String url) async {
-  final Uri uri = Uri.parse(url);
-  if (!await launchUrl(uri)) {
-    throw 'Could not launch $url';
   }
 }
