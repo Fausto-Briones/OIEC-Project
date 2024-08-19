@@ -58,7 +58,6 @@ class CompetenciaDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: ()  {
-            print('Form URL: $form');
             _launchURL(form);
           },
           child: const Text('Inscribirme'),

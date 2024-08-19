@@ -17,7 +17,6 @@ class CompHomeComponent extends StatelessWidget{
       InkWell(
       onTap: () {
         // Define your onTap action here
-        print("Tapped on $competencia");
       },
       child: Container(
 

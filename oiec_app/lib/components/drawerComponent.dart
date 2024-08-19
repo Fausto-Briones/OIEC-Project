@@ -86,13 +86,6 @@ class DrawerComponent extends StatelessWidget {
                 router.navigateToNewScreen(context);
               },
             ),
-            DrawerOption(
-              name: 'Chat',
-              icon: Icon(Icons.chat, color: Colors.white),
-              onPressed: () {
-                router.navigateToChatScreen(context);
-              },
-            ),
             ListTile(
               contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
               title: Text(
@@ -105,6 +98,8 @@ class DrawerComponent extends StatelessWidget {
               leading: Icon(Icons.logout, color: Colors.white),
               onTap: () {
                 // Add your logout function here
+                cedula = "";
+                router.navigateToLoginScreen(context);
               },
             ),
           ],

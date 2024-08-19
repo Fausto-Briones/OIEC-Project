@@ -101,7 +101,7 @@ class _PreviousResultsState extends State<_PreviousResults> {
   void initState() {
     super.initState();
     // Assuming you have a method to get the user's 'cedula'
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 4), () {
       String cedula = globals.cedula;
       setState(() {
         futureResults = DatabaseService.fetchPastResults(cedula);
@@ -135,7 +135,6 @@ class _PreviousResultsState extends State<_PreviousResults> {
             return Center(child: Text('No hay resultados previos disponibles.'));
           } else {
             Map<String, dynamic> results = snapshot.data!['results']!;
-            print(results);
               return results.isEmpty ?
               const Center(
             child: Text(

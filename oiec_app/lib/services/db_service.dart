@@ -53,7 +53,6 @@ class DatabaseService {
 
     if (response.statusCode == 200) {
       Map<String,dynamic> pastResults = jsonDecode(response.body);
-      print(pastResults);
       return {
         'results':pastResults
       };

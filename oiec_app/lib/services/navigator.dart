@@ -9,6 +9,7 @@ import 'package:oiec_app/screens/chatDetailScreen.dart';
 import 'package:oiec_app/screens/problemasScreen.dart';
 import 'package:oiec_app/screens/register.dart';
 import 'package:oiec_app/screens/trainmentFileScreen.dart';
+import 'package:oiec_app/screens/login.dart';
 
 class Enrouter{
   Enrouter._privateConstructor();
@@ -68,5 +69,8 @@ class Enrouter{
 
   void navigateToProblemasScreen(BuildContext context){
     Navigator.push(context, MaterialPageRoute(builder: (context)=>  ProblemasScreen()));
+  }
+  void navigateToLoginScreen(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>  Login()));
   }
 }
