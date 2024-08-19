@@ -13,11 +13,13 @@ class TrainmentFileScreen extends StatelessWidget {
   final TextEditingController _controllerTitulo = TextEditingController();
   final TextEditingController _controllerTaller = TextEditingController();
   final TextEditingController _controllerEnlaceVideo = TextEditingController();
-  final TextEditingController _controllerEnlaceArchivos = TextEditingController();
+  final TextEditingController _controllerEnlaceArchivos =
+      TextEditingController();
 
   final Enrouter router = Enrouter.instance;
 
-  void agregarClase(String tituloTaller, String name, String video, String archivo) async {
+  void agregarClase(
+      String tituloTaller, String name, String video, String archivo) async {
     CollectionReference user =
         FirebaseFirestore.instance.collection('Trainings');
 
@@ -34,66 +36,69 @@ class TrainmentFileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      title: "Nuevo recurso",
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              InputFieldWithLabel(
-                labelText: 'Título del taller',
-                controller: _controllerTaller,
-                hintText: 'Ingresa título del taller o competencia',
-                hintColor: Colors.grey,
-              ),
-              const SizedBox(height: 30),
-              InputFieldWithLabel(
-                labelText: 'Tema de la clase',
-                controller: _controllerTitulo,
-                hintText: 'Ingresa tema de la clase',
-                hintColor: Colors.grey,
-              ),
-              const SizedBox(height: 30),
-              InputFieldWithLabel(
-                labelText: 'Enlace de la clase',
-                controller: _controllerEnlaceVideo,
-                hintText: 'Ingresa enlace de video de la clase',
-                hintColor: Colors.grey,
-              ),
-              const SizedBox(height: 30),
-              InputFieldWithLabel(
-                labelText: 'Enlace de archivos',
-                controller: _controllerEnlaceArchivos,
-                hintText: 'Ingresa enlace de archivos utilizados',
-                hintColor: Colors.grey,
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * 0.05),
-            child: GeneralButton(
-              text: 'Agregar',
-              onPressed: () {
-                var taller = _controllerTaller.text;
-                var clase = _controllerTitulo.text;
-                var video = _controllerEnlaceVideo.text;
-                var archivo = _controllerEnlaceArchivos.text;
-                if (taller.isEmpty || clase.isEmpty || video.isEmpty || archivo.isEmpty) {
-                  // ignore: use_build_context_synchronously
-                  showCustomAlertDialog(
-                      context, "Error", "Todos los campos son obligatorios.");
-                } else {
-                  agregarClase(taller, clase, video, archivo);
-                  Future.delayed(Duration(seconds: 1), () {
-                    router.navigateToEntrenamientosScreen(context);
-                  });
-                }
-              },
+        title: "Nuevo recurso",
+        body: Container(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 0.0, left: 15.0, right: 15.0),
+            child: Column(
+              children: [
+                InputFieldWithLabel(
+                  labelText: 'Título del taller',
+                  controller: _controllerTaller,
+                  hintText: 'Ingresa título del taller o competencia',
+                  hintColor: Colors.grey,
+                ),
+                const SizedBox(height: 30),
+                InputFieldWithLabel(
+                  labelText: 'Tema de la clase',
+                  controller: _controllerTitulo,
+                  hintText: 'Ingresa tema de la clase',
+                  hintColor: Colors.grey,
+                ),
+                const SizedBox(height: 30),
+                InputFieldWithLabel(
+                  labelText: 'Enlace de la clase',
+                  controller: _controllerEnlaceVideo,
+                  hintText: 'Ingresa enlace de video de la clase',
+                  hintColor: Colors.grey,
+                ),
+                const SizedBox(height: 30),
+                InputFieldWithLabel(
+                  labelText: 'Enlace de archivos',
+                  controller: _controllerEnlaceArchivos,
+                  hintText: 'Ingresa enlace de archivos utilizados',
+                  hintColor: Colors.grey,
+                ),
+                const SizedBox(height: 260),
+                Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.05),
+                  child: GeneralButton(
+                    text: 'Agregar',
+                    onPressed: () {
+                      var taller = _controllerTaller.text;
+                      var clase = _controllerTitulo.text;
+                      var video = _controllerEnlaceVideo.text;
+                      var archivo = _controllerEnlaceArchivos.text;
+                      if (taller.isEmpty ||
+                          clase.isEmpty ||
+                          video.isEmpty ||
+                          archivo.isEmpty) {
+                        // ignore: use_build_context_synchronously
+                        showCustomAlertDialog(context, "Error",
+                            "Todos los campos son obligatorios.");
+                      } else {
+                        agregarClase(taller, clase, video, archivo);
+                        Future.delayed(Duration(seconds: 1), () {
+                          router.navigateToEntrenamientosScreen(context);
+                        });
+                      }
+                    },
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }
